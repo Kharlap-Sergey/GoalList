@@ -1,0 +1,61 @@
+﻿<Window x:Class="WPF_.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Image x:Key="RedCross" Height="23" Width="23" Source="D:\subject\project\WPF!\WPF!\Properties\redCross.jpg"/>
+        <Image x:Key="GreenCross" Height="23" Width="23" Source="D:\subject\project\WPF!\WPF!\Properties\greenCross.jpg"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <GridSplitter Grid.Row="1" ShowsPreview="False" Width="3"
+        HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+        
+        <ListView 
+            x:Name="GoalList" 
+            Grid.Row="0"
+            ItemsSource="{Binding Tasks}">
+            
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="Task">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" x:Name ="TaskContent" Text="{Binding Content}" />
+                        <Button x:Name="ButtonEditor" 
+                                Grid.Column="1" 
+                                Click="ButtonEditor_Click">
+                            <Image  
+                               Height="23" Width="23"
+                                Source="D:\subject\project\WPF!\WPF!\Properties\editor.jpg"/>
+                        </Button>
+                        <Button x:Name="ButtonEraser"
+                                Grid.Column="2"
+                                Click="ButtonEraser_Click">
+                            <Image  
+                               Height="23" Width="23"
+                               Source="D:\subject\project\WPF!\WPF!\Properties\redCross.jpg"/>
+
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Grid.Row="2" 
+                Click="AddButton_Click" 
+                x:Name="AddButton" 
+                Content="{StaticResource GreenCross}"/>
+    </Grid>
+</Window>
