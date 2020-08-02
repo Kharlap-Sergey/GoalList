@@ -10,14 +10,16 @@
         <Image x:Key="RedCross" Height="23" Width="23" Source="D:\subject\project\WPF!\WPF!\Properties\redCross.jpg"/>
         <Image x:Key="GreenCross" Height="23" Width="23" Source="D:\subject\project\WPF!\WPF!\Properties\greenCross.jpg"/>
     </Window.Resources>
-    <Grid>
+    <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <GridSplitter Grid.Row="1" ShowsPreview="False" Width="3"
-        HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+        <GridSplitter Grid.Row="1"  
+                      Width="3"
+                      HorizontalAlignment="Center" 
+                      VerticalAlignment="Stretch" />
         
         <ListView 
             x:Name="GoalList" 
@@ -32,7 +34,20 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" x:Name ="TaskContent" Text="{Binding Content}" />
+                        <Button Grid.Column="0" 
+                                Width="Auto"
+                                Height="Auto"
+                                Background="Transparent"
+                                MouseDoubleClick="ButtonEditor_Click">
+                            <Button.Content>
+                                <Border HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+                                    <TextBlock  x:Name ="TaskContent" 
+                                                Text="{Binding Content}"/>
+                                </Border>
+                            </Button.Content>
+                        </Button>
+                        
                         <Button x:Name="ButtonEditor" 
                                 Grid.Column="1" 
                                 Click="ButtonEditor_Click">
@@ -52,7 +67,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
         <Button Grid.Row="2" 
                 Click="AddButton_Click" 
                 x:Name="AddButton" 
